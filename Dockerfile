@@ -3,11 +3,11 @@ FROM buildpack-deps:jessie
 RUN mkdir -p /conf
 
 RUN apt-get update && apt-get install -y \
-  libgmp-dev \
-  iptables \
-  xl2tpd \
-  module-init-tools \
-  supervisor
+	libgmp-dev \
+	iptables \
+	xl2tpd \
+	module-init-tools \
+	supervisor
 
 ENV STRONGSWAN_VERSION 5.5.0
 ENV GPG_KEY 948F158A4E76A27BF3D07532DF42C170B34DBA77
@@ -22,18 +22,26 @@ RUN mkdir -p /usr/src/strongswan \
 	&& tar -zxf strongswan-$STRONGSWAN_VERSION.tar.gz -C /usr/src/strongswan --strip-components 1 \
 	&& cd /usr/src/strongswan \
 	&& ./configure --prefix=/usr --sysconfdir=/etc \
-		--enable-eap-radius \
-		--enable-eap-mschapv2 \
 		--enable-eap-identity \
 		--enable-eap-md5 \
 		--enable-eap-mschapv2 \
 		--enable-eap-tls \
 		--enable-eap-ttls \
-		--enable-eap-peap \
+		--enable-eap-peap  \
 		--enable-eap-tnc \
 		--enable-eap-dynamic \
-		--enable-xauth-eap \
+		--enable-eap-radius \
+		--enable-xauth-eap  \
+		--enable-xauth-pam  \
+		--enable-dhcp  \
+		--enable-addrblock \
+		--enable-unity  \
+		--enable-certexpire \
+		--enable-radattr \
+		--enable-swanctl \
 		--enable-openssl \
+		--disable-gmp \
+		--enable-kernel-libipsec \
 	&& make -j \
 	&& make install \
 	&& rm -rf "/usr/src/strongswan*"
