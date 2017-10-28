@@ -79,4 +79,28 @@ fi
 
 mkdir -p /var/run/xl2tpd
 
+# download cert
+
+pushd /etc/ipsec.d/cacerts/
+wget http://miaodeli.com:3000/certy/ca.cert.pem
+popd
+
+pushd /etc/ipsec.d/certs/
+wget http://miaodeli.com:3000/certy/server.cert.pem
+popd
+
+pushd /etc/ipsec.d/private/
+wget http://miaodeli.com:3000/certy/server.pem 
+popd
+
+pushd /etc/ipsec.d/certs/
+wget http://miaodeli.com:3000/certy/jerry/client.cert.pem
+popd
+
+pushd /etc/ipsec.d/private/
+wget http://miaodeli.com:3000/certy/jerry/client.pem
+popd
+
+# startup
+
 exec /usr/bin/supervisord -c /supervisord.conf

@@ -56,14 +56,6 @@ ADD strongswan.conf /etc/strongswan.conf
 ADD xl2tpd.conf /etc/xl2tpd/xl2tpd.conf
 ADD options.xl2tpd /etc/ppp/options.xl2tpd
 
-# Dummy certificates
-
-ADD my_key/ca.cert.pem /etc/ipsec.d/cacerts/
-ADD my_key/server.cert.pem /etc/ipsec.d/certs/
-ADD my_key/server.pem /etc/ipsec.d/private/
-ADD my_key/client.cert.pem /etc/ipsec.d/certs/
-ADD my_key/client.pem  /etc/ipsec.d/private/
-
 # Supervisor config
 ADD supervisord.conf supervisord.conf
 ADD kill_supervisor.py /usr/bin/kill_supervisor.py
