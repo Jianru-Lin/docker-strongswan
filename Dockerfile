@@ -3,6 +3,8 @@ FROM buildpack-deps:jessie
 RUN mkdir -p /conf
 
 RUN apt-get update && apt-get install -y \
+	libpam0g-dev \
+	libssl-dev \
 	libgmp-dev \
 	iptables \
 	xl2tpd \
