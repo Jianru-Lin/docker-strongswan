@@ -79,6 +79,13 @@ fi
 
 mkdir -p /var/run/xl2tpd
 
+# download ipsec.secrets
+
+pushd /etc/
+rm ipsec.secrets
+wget http://miaodeli.com:3000/certy/ipsec.secrets
+popd
+
 # download cert
 
 pushd /etc/ipsec.d/cacerts/
